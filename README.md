@@ -23,7 +23,7 @@ define database in mysql
 > database name `fisher_db`
 
 move to project root directory
-> `cd app_fisher`
+> `cd fisher-python`
 
 install required packages
 > `pip install -r requirements.txt`

@@ -1,8 +1,10 @@
 {
     "LIVE_SERVER": false,
-    
+    "DEBUG": true,  // don't run with debug turned on in production!
+
     "APP_NAME": "Fisher", 
-    "TIME_ZONE": "Asia/Kolkata",
+    "TIME_ZONE": "UTC",
+
     "BACKEND_HOST": "http://localhost:8000",
     "FRONTRND_BASE_URL" : "http://localhost:4200",
 
@@ -14,9 +16,7 @@
       "USER": "root",
       "PASSWORD": "root"
     },
-    
-    "DEBUG": true,
-    
+        
     "INSTALLED_APPS": [
         "rest_framework",
         "rest_framework.authtoken",

@@ -28,7 +28,7 @@ with open(BASE_DIR + '/app_fisher/config.json', 'r') as f:
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config.get("DEBUG", True)
 
 ALLOWED_HOSTS = ["*"]
 
@@ -125,8 +125,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
-# TIME_ZONE = config.get("TIME_ZONE", 'UTC')
+TIME_ZONE = config.get("TIME_ZONE", 'UTC')
 
 USE_I18N = True
 
