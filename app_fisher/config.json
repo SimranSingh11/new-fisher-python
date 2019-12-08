@@ -1,0 +1,44 @@
+{
+    "LIVE_SERVER": false,
+    
+    "APP_NAME": "Fisher", 
+    "TIME_ZONE": "Asia/Kolkata",
+    "BACKEND_HOST": "http://localhost:8000",
+    "FRONTRND_BASE_URL" : "http://localhost:4200",
+
+    "DATABASES": {
+      "ENGINE": "django.db.backends.mysql",
+      "NAME": "fisher_db",
+      "HOST": "localhost",
+      "PORT": "3306",
+      "USER": "root",
+      "PASSWORD": "root"
+    },
+    
+    "DEBUG": true,
+    
+    "INSTALLED_APPS": [
+        "rest_framework",
+        "rest_framework.authtoken",
+        "rest_framework_swagger"
+    ],
+
+    "MY_MIDDLEWARES": [
+    ],
+
+    "MY_APPS": [
+        "user",
+        "product",
+        "task"
+    ],
+    
+    "EMAIL": {
+        "BACKEND": "django.core.mail.backends.smtp.EmailBackend",
+        "USE_TLS": true,
+        "HOST": "smtp.gmail.com",
+        "PORT": 587,
+        "HOST_USER": "peerbyte@gmail.com",
+        "HOST_PASSWORD": "v15ce4q1"
+    }    
+   
+}
