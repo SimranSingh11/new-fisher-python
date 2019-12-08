@@ -1,11 +1,17 @@
 # AppFisher
 
 Project : Fisher
-Freamwork : Django 2.2.7
+Requirement : Python3
 
 ## Steps to install and run project
 
 clone from repository
+
+Before You Begin
+> `sudo apt update`
+
+Install Python Virtualenv
+> `sudo apt install virtualenv`
 
 create virtual environment:
 > `virtualenv -p python3 venv`
