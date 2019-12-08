@@ -1,6 +1,6 @@
 {
     "LIVE_SERVER": false,
-    "DEBUG": true,  // don't run with debug turned on in production!
+    "DEBUG": true,  
 
     "APP_NAME": "Fisher", 
     "TIME_ZONE": "UTC",
