@@ -134,9 +134,9 @@ USE_L10N = True
 USE_TZ = True
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+# SECURE_SSL_REDIRECT = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
@@ -155,7 +155,7 @@ ADMINS = [('shahnavaz', 'shahnavazv16@gmail.com')]
 
 APP_NAME = config.get("APP_NAME", 'Fisher')
 
-BACKEND_HOST = config.get("BACKEND_HOST", 'http://localhost:8000')
+BACKEND_HOST = config.get("BACKEND_HOST", 'http://localhost:9000')
 FRONTRND_BASE_URL = config.get("FRONTRND_BASE_URL", 'http://localhost:4200')
 
 
