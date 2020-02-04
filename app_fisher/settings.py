@@ -155,8 +155,8 @@ ADMINS = [('shahnavaz', 'shahnavazv16@gmail.com')]
 
 APP_NAME = config.get("APP_NAME", 'Fisher')
 
-BACKEND_HOST = config.get("BACKEND_HOST", 'http://localhost:9000')
-FRONTRND_BASE_URL = config.get("FRONTRND_BASE_URL", 'http://localhost:4200')
+BACKEND_HOST =   'http://52.6.75.203:8085' #  config.get("BACKEND_HOST", 'http://localhost:8085')
+FRONTRND_BASE_URL =  'http://52.6.75.203' # config.get("FRONTRND_BASE_URL", 'http://localhost:8080')
 
 
 # =============== for Email Setting (start) ========================  #
