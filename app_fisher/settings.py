@@ -29,10 +29,9 @@ with open(BASE_DIR + '/app_fisher/config.json', 'r') as f:
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config.get("DEBUG", True)
+PRODUCTION = config.get("PRODUCTION", True)
 
 ALLOWED_HOSTS = ["*"]
-
-
 
 # Application definition
 
@@ -85,14 +84,22 @@ WSGI_APPLICATION = 'app_fisher.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+
+DB_SETTING = dict()
+
+if PRODUCTION:
+    DB_SETTING = config["PROD_DATABASES"]
+else:
+    DB_SETTING = config["DATABASES"]
+
 DATABASES = {
     'default': {
-        'ENGINE': config["DATABASES"]["ENGINE"],
-        'NAME': config["DATABASES"]["NAME"],
-        'HOST': config["DATABASES"]["HOST"],
-        'PORT': config["DATABASES"]["PORT"],
-        'USER': config["DATABASES"]["USER"],
-        'PASSWORD': config["DATABASES"]["PASSWORD"],
+        'ENGINE': DB_SETTING["ENGINE"],
+        'NAME': DB_SETTING["NAME"],
+        'HOST': DB_SETTING["HOST"],
+        'PORT': DB_SETTING["PORT"],
+        'USER': DB_SETTING["USER"],
+        'PASSWORD': DB_SETTING["PASSWORD"],
         # 'POOL_OPTIONS' : {
         #     'POOL_SIZE':5,
         #     'MAX_OVERFLOW': 5

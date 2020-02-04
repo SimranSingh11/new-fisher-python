@@ -1,5 +1,5 @@
 {
-    "LIVE_SERVER": false,
+    "PRODUCTION": true,
     "DEBUG": true,  
 
     "APP_NAME": "Fisher", 
@@ -14,6 +14,17 @@
       "PASSWORD": "root"
     },
         
+
+    "PROD_DATABASES": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "fisher_db",
+        "HOST": "localhost",
+        "PORT": "3306",
+        "USER": "root",
+        "PASSWORD": "wallet@123"
+      },
+
+
     "INSTALLED_APPS": [
         "rest_framework",
         "rest_framework.authtoken",
