@@ -1,5 +1,5 @@
 from user.models import User
-# from role_permission.helpers import get_role_wise_module_permissions, get_super_module_permissions
+from role_permission.helpers import get_role_wise_module_permissions, get_super_module_permissions
 from user.helpers import  get_user_obj_data
 
 
@@ -19,7 +19,7 @@ def get_login_user_dict(request, user_object, token):
     result['User'] = user_info
     result['Token'] = token_info
 
-    permission_dict = dict()  # TODO get_super_module_permissions() if user_object.is_superuser else get_role_wise_module_permissions(user_object.role_id)
+    permission_dict = get_super_module_permissions() if user_object.is_superuser else get_role_wise_module_permissions(user_object.role_id)
     result['Permission'] = permission_dict
 
     return result 

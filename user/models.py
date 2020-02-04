@@ -19,6 +19,7 @@ class User(AbstractUser, BaseModel):
     forgot_pass_verify_code_date = models.DateTimeField(blank=True, null=True, db_column='forgot_pass_verify_code_date')
     
     # Salseman
+    salesman_id = models.CharField(max_length=10, blank=True, null=True, db_column='salesman_id')
     date_of_birth = models.DateTimeField(blank=True, null=True, db_column='date_of_birth')
     address = models.TextField(blank=True, null=True, db_column='adsress')
     is_verified = models.BooleanField(default=False, db_column='is_verified')

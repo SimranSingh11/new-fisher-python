@@ -17,13 +17,16 @@ class SalesmanSerializer(serializers.ModelSerializer):
     contact_number = serializers.SerializerMethodField()
     birth_date = serializers.SerializerMethodField()
     date_joined = serializers.DateTimeField(read_only=True)
+    role_id = serializers.IntegerField(required=False)
+    salesman_id = serializers.CharField(read_only=True)
+
 
     class Meta:
         model = User
         
         fields = ('id', 'first_name', 'last_name', 'dial_code', 'phone_number', 'email','image_url',
                   'image', 'date_of_birth', 'address', 'full_name', 'is_active', 'is_verified',
-                  'contact_number', 'date_joined', 'birth_date')
+                  'contact_number', 'date_joined', 'birth_date', 'role_id', 'salesman_id')
         
         read_only_fields = ('is_active', 'is_verified')
 

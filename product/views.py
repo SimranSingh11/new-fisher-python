@@ -5,13 +5,15 @@ from rest_framework.decorators import action
 from base.api_response import success_response, error_response, api_message, response_text, get_serializer_errors
 from base.models import BaseAPISet
 
+from role_permission.permissions import CheckRolePermission
+
 from . import models
 from . import serializers
 
 
 class SizeAPISet(BaseAPISet):
 
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, CheckRolePermission]
     model = models.Size
     serializer_class = serializers.SizeSerializer
     search_fields = ['title']
@@ -20,7 +22,7 @@ class SizeAPISet(BaseAPISet):
 
 class CategoryAPISet(BaseAPISet):
 
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, CheckRolePermission]
     model = models.Category
     serializer_class = serializers.CategorySerializer
     search_fields = ['title']
@@ -29,7 +31,7 @@ class CategoryAPISet(BaseAPISet):
 
 class SubCategoryAPISet(BaseAPISet):
 
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, CheckRolePermission]
     model = models.SubCategory
     serializer_class = serializers.SubCategorySerializer
     search_fields = ['title']
@@ -39,7 +41,7 @@ class SubCategoryAPISet(BaseAPISet):
 
 class ImportingAPISet(BaseAPISet):
 
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, CheckRolePermission]
     model = models.Importing
     serializer_class = serializers.ImportingSerializer
     search_fields = ['title']
@@ -48,7 +50,7 @@ class ImportingAPISet(BaseAPISet):
 
 class TypeAPISet(BaseAPISet):
 
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, CheckRolePermission]
     model = models.Type
     serializer_class = serializers.TypeSerializer
     search_fields = ['title']
@@ -57,7 +59,7 @@ class TypeAPISet(BaseAPISet):
 
 class ProductAPISet(BaseAPISet):
 
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, CheckRolePermission]
     model = models.Product
     serializer_class = serializers.ProductSerializer
     search_fields = ['title']

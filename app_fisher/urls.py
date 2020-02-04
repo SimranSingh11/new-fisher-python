@@ -31,6 +31,8 @@ urlpatterns = [
     path('api/', include('user.urls')),  # user module urls
     path('api/', include('product.urls')),  # product module urls
     path('api/', include('task.urls')),  # task module urls
+    path('api/', include('role_permission.urls')),  # role_permission module urls
+    path('api/', include('order.urls')),  # order module urls
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -5,9 +5,6 @@
     "APP_NAME": "Fisher", 
     "TIME_ZONE": "UTC",
 
-    "BACKEND_HOST": "http://52.6.75.203",
-    "FRONTRND_BASE_URL" : "https://fisher.netlify.com",
-
     "DATABASES": {
       "ENGINE": "django.db.backends.mysql",
       "NAME": "fisher_db",
@@ -29,7 +26,9 @@
     "MY_APPS": [
         "user",
         "product",
-        "task"
+        "task",
+        "role_permission",
+        "order"
     ],
     
     "EMAIL": {

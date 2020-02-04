@@ -13,3 +13,25 @@ def get_user_obj_data(obj):
 
     return user_data
 
+
+def generate_salesman_id():
+    import uuid
+    return "S{}".format(str(uuid.uuid4().fields[-1])[:5])
+
+
+def generate_salesman_password():
+    import uuid
+    return "{}".format(str(uuid.uuid4().fields[-1])[:5])
+
+
+def send_registration_mail(salesman_obj):
+    from my_helpers.email_thread import email_send
+
+    password =  generate_salesman_password()
+    salesman_obj.set_password(password)
+
+    subject = "Registarion Successfull"
+    message = "Password: {}".format(password)
+    to_email_list = [salesman_obj.email]
+    
+    email_send(subject=subject, message=message, to_email_list=to_email_list)
