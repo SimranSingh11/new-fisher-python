@@ -5,7 +5,7 @@ from . import models
 
 class SizeSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    title = serializers.CharField(required=True, validators=[UniqueValidator(queryset=models.Size.objects.filter(is_deleted=False), message="already exists",)], error_messages={'required': 'Please enter title'})
+    title = serializers.CharField(required=True, validators=[UniqueValidator(queryset=models.Size.objects.filter(is_deleted=False), message="Size already exists",)], error_messages={'required': 'Please enter title'})
     is_active = serializers.BooleanField(read_only=True)
 
     class Meta:
@@ -15,7 +15,7 @@ class SizeSerializer(serializers.ModelSerializer):
 
 class CategorySerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    title = serializers.CharField(required=True, validators=[UniqueValidator(queryset=models.Category.objects.filter(is_deleted=False), message="already exists",)], error_messages={'required': 'Please enter title'})
+    title = serializers.CharField(required=True, validators=[UniqueValidator(queryset=models.Category.objects.filter(is_deleted=False), message="Category already exists",)], error_messages={'required': 'Please enter title'})
     is_active = serializers.BooleanField(read_only=True)
 
     class Meta:
@@ -25,7 +25,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class SubCategorySerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    title = serializers.CharField(required=True, validators=[UniqueValidator(queryset=models.SubCategory.objects.filter(is_deleted=False), message="already exists",)], error_messages={'required': 'Please enter title'})
+    title = serializers.CharField(required=True, validators=[UniqueValidator(queryset=models.SubCategory.objects.filter(is_deleted=False), message="Subcategory already exists",)], error_messages={'required': 'Please enter title'})
     category_id = serializers.IntegerField(required=True, error_messages={'required': 'Please select category'})
     is_active = serializers.BooleanField(read_only=True)
     category_title = serializers.SerializerMethodField()
@@ -40,7 +40,7 @@ class SubCategorySerializer(serializers.ModelSerializer):
 
 class ImportingSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    title = serializers.CharField(required=True, validators=[UniqueValidator(queryset=models.Importing.objects.filter(is_deleted=False), message="already exists",)], error_messages={'required': 'Please enter title'})
+    title = serializers.CharField(required=True, validators=[UniqueValidator(queryset=models.Importing.objects.filter(is_deleted=False), message="Importing already exists",)], error_messages={'required': 'Please enter title'})
     is_active = serializers.BooleanField(read_only=True)
 
     class Meta:
@@ -50,7 +50,7 @@ class ImportingSerializer(serializers.ModelSerializer):
 
 class TypeSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    title = serializers.CharField(required=True, validators=[UniqueValidator(queryset=models.Type.objects.filter(is_deleted=False), message="already exists",)], error_messages={'required': 'Please enter title'})
+    title = serializers.CharField(required=True, validators=[UniqueValidator(queryset=models.Type.objects.filter(is_deleted=False), message="Type already exists",)], error_messages={'required': 'Please enter title'})
     is_active = serializers.BooleanField(read_only=True)
 
     class Meta:
@@ -60,7 +60,7 @@ class TypeSerializer(serializers.ModelSerializer):
 
 class ProductSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    title = serializers.CharField(required=True, validators=[UniqueValidator(queryset=models.Product.objects.filter(is_deleted=False), message="already exists",)], error_messages={'required': 'Please enter title'})
+    title = serializers.CharField(required=True, validators=[UniqueValidator(queryset=models.Product.objects.filter(is_deleted=False), message="Product name already exists",)], error_messages={'required': 'Please enter title'})
     importing_id = serializers.IntegerField(required=True, error_messages={'required': 'Please select importing'})
     category_id = serializers.IntegerField(required=True, error_messages={'required': 'Please select category'})
     subcategory_id = serializers.IntegerField(required=True, error_messages={'required': 'Please select subcategory'})

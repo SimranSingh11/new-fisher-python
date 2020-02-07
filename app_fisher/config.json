@@ -1,5 +1,5 @@
 {
-    "PRODUCTION": true,
+    "PRODUCTION": false,
     "DEBUG": true,  
 
     "APP_NAME": "Fisher", 
@@ -39,7 +39,8 @@
         "product",
         "task",
         "role_permission",
-        "order"
+        "order",
+        "company"
     ],
     
     "EMAIL": {
