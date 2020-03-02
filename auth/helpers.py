@@ -22,6 +22,9 @@ def get_login_user_dict(request, user_object, token):
     permission_dict = get_super_module_permissions() if user_object.is_superuser else get_role_wise_module_permissions(user_object.role_id)
     result['Permission'] = permission_dict
 
+    # configuration_dict = get_configuration_dict()
+    # result['COnfiguration'] = configuration_dict
+
     return result 
 
 

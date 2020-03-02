@@ -40,7 +40,9 @@
         "task",
         "role_permission",
         "order",
-        "company"
+        "company",
+        "cms",
+        "faq"
     ],
     
     "EMAIL": {

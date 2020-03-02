@@ -26,7 +26,7 @@ urlpatterns = [
     # path('', schema_view),
 
     # path('admin/', admin.site.urls),
-    path('', include_docs_urls(title='Backend API List')),
+    path('api/docs/', include_docs_urls(title='Backend API List')),
     path('api/', include('auth.urls')),  # auth module urls
     path('api/', include('user.urls')),  # user module urls
     path('api/', include('product.urls')),  # product module urls
@@ -34,6 +34,10 @@ urlpatterns = [
     path('api/', include('role_permission.urls')),  # role_permission module urls
     path('api/', include('order.urls')),  # order module urls
     path('api/', include('dashboard.urls')),  # dashboard module urls
+    path('api/', include('company.urls')),  # company module urls
+    path('api/', include('faq.urls')),  # faq module urls
+    path('api/', include('cms.urls')),  # cms module urls
+    path('api/web/', include('web_api.urls')),  # web_api module urls
 
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
