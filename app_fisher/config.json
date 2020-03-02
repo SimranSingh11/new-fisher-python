@@ -1,6 +1,6 @@
 {
-    "PRODUCTION": false,
-    "DEBUG": true,  
+    "PRODUCTION": true,
+    "DEBUG": false,  
 
     "APP_NAME": "Fisher", 
     "TIME_ZONE": "UTC",
