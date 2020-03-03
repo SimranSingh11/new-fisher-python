@@ -1,5 +1,5 @@
 {
-    "PRODUCTION": true,
+    "PRODUCTION": false,
     "DEBUG": true,  
 
     "APP_NAME": "Fisher", 

@@ -260,7 +260,8 @@ class UpdatePermissionsData(generics.GenericAPIView):
             obj = AppModule.objects.filter(name=key).first()
             if not obj:
                 obj =  AppModule()
-                obj.name = obj.save()
+                obj.name =  key
+                obj.save()
 
         c = 0
         for key,value_list in app_models.items():
@@ -269,6 +270,7 @@ class UpdatePermissionsData(generics.GenericAPIView):
                 if module:
                     model_obj = AppModel.objects.filter(module_id=module.pk, name=value).first()
                     if not model_obj:
+                        model_obj = AppModel()
                         model_obj.name = value
                         model_obj.module_id = module.pk
                         model_obj.save()
