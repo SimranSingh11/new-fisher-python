@@ -224,3 +224,71 @@ class RolePermissionList(generics.GenericAPIView):
             response_data = error_response(error)
 
         return Response(response_data, status=response_data.get("code"))
+
+
+class UpdatePermissionsData(generics.GenericAPIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        """
+        for Retrieve profile data
+        """
+
+        from .models import AppModule, AppModel, Permission
+
+        app_models = {
+                'product': ['size', 'category', 'subcategory', 'importing', 'type', 'product'],
+                'task': ['task'],
+                'user': ['salesman', 'customer'],
+                'role_permission': ['role'],
+                'order': ['order'],
+                'company': ['configuration'],
+                'faq' : ['faq'],
+                'cms':['cms']
+            }
+        
+        action_list = [
+            {'name': 'list', 'code': 'list',},
+            {'name': 'view', 'code': 'view',},
+            {'name': 'add', 'code': 'add',},
+            {'name': 'edit', 'code': 'edit',},
+            {'name': 'delete', 'code': 'delete',},
+            {'name': 'status change', 'code': 'status_change',},
+        ]
+
+        for key in app_models.keys():
+            obj = AppModule.objects.filter(name=key).first()
+            if not obj:
+                obj =  AppModule()
+                obj.name = obj.save()
+
+        c = 0
+        for key,value_list in app_models.items():
+            for value in value_list:
+                module = AppModule.objects.filter(name=key).first()
+                if module:
+                    model_obj = AppModel.objects.filter(module_id=module.pk, name=value).first()
+                    if not model_obj:
+                        model_obj.name = value
+                        model_obj.module_id = module.pk
+                        model_obj.save()
+
+                    i = 0
+                    for action in action_list:
+                        i = i+1
+                        perm_obj = Permission.objects.filter(code=action['code'], model_id=model_obj.pk).first()
+                        if not perm_obj:
+                            perm_obj = Permission()
+                            perm_obj.name = action['name']
+                            perm_obj.code = action['code']
+                            perm_obj.model = model_obj
+                            perm_obj.order_no = i
+                            perm_obj.save()
+
+                            c = c+1
+            
+        data = dict()
+        data['permission_added'] = c
+        response_data = success_response(data=data)
+
+        return Response(response_data, status=response_data["code"])

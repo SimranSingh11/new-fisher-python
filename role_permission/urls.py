@@ -12,5 +12,7 @@ router.register('role', views.RoleAPISet, base_name="role")
 
 urlpatterns = [
        path('role_permission/<int:role_id>', views.RolePermissionList.as_view()),
+       path('update_permission_data/', views.UpdatePermissionsData.as_view()),
+
 
 ]+router.urls

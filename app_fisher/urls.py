@@ -25,7 +25,7 @@ schema_view = get_swagger_view(title='Fisher App API')
 urlpatterns = [
     # path('', schema_view),
 
-    # path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('api/docs/', include_docs_urls(title='Backend API List')),
     path('api/', include('auth.urls')),  # auth module urls
     path('api/', include('user.urls')),  # user module urls
