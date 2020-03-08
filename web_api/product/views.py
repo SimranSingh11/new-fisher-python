@@ -10,12 +10,16 @@ from base.api_response import success_response, error_response
 from product import models
 
 
-class ProductListView(generics.GenericAPIView):
+class ProductListView(generics.ListAPIView):
     permission_classes = [AllowAny]
-
+    search_fields = []
+    filter_fields = ['category_id', ]
+    page_size = 10
+    sort_by= ['-pk']
 
     def get_queryset(self):
-        models.Product.objects.all()
+        return models.Product.objects.all()
+
 
     # function for searching in list
     def get_search_query(self, request):
@@ -54,10 +58,8 @@ class ProductListView(generics.GenericAPIView):
         limit = page_size * current_page
         offset = limit - page_size
 
-        queryset = self.get_queryset()
-
-        objects = queryset.filter(query_condition).order_by(*self.sort_by)[offset:limit]
-        total_objects = queryset.filter(query_condition).order_by(*self.sort_by).count()
+        objects = models.Product.objects.filter(query_condition).order_by(*self.sort_by)[offset:limit]
+        total_objects = models.Product.objects.filter(query_condition).order_by(*self.sort_by).count()
         total_pages = math.ceil(total_objects / page_size)
 
         pagination_data = dict()
@@ -85,12 +87,12 @@ class ProductListView(generics.GenericAPIView):
             data_info['glace'] = obj.glace
             data_info['description'] = obj.description
             data_info['extra_note'] = obj.extra_note
-            data_info['importing'] = obj.importing
-            data_info['category'] = obj.category
-            data_info['subcategory'] = obj.subcategory
+            data_info['importing'] = obj.get_importing()
+            data_info['category'] = obj.get_category()
+            data_info['subcategory'] = obj.get_subcategory()
             data_info['is_favorite'] = obj.is_favorite
-            data_info['type'] = obj.type
-            data_info['sizes'] = obj.sizes
+            data_info['type'] = obj.get_type()
+            data_info['sizes'] = obj.get_size()
             data_info['price'] = obj.price
             data_list.append(data_info)
         return data_list
@@ -99,7 +101,7 @@ class ProductListView(generics.GenericAPIView):
 
         queryset = self.get_queryset()
         
-        query_condition = Q(is_deleted=False)
+        query_condition = Q(is_deleted=False, is_active=True)
 
         if self.search_fields:
             query_condition = query_condition & self.get_search_query(request)
@@ -124,13 +126,26 @@ class ProductDetailView(generics.GenericAPIView):
         """
         for Retrieve product data
         """
-        obj =  models.Product.objects.filter(pk=pk, is_deleted=False).first()
+        obj =  models.Product.objects.filter(pk=pk, is_deleted=False, is_active=True).first()
 
-        if obj:
+        if obj:            
             data_info = dict()
+            data_info['id'] = obj.pk
+            data_info['title'] = obj.title
+            data_info['image'] = obj.get_image_url()
+            data_info['glace'] = obj.glace
+            data_info['description'] = obj.description
+            data_info['extra_note'] = obj.extra_note
+            data_info['importing'] = obj.get_importing()
+            data_info['category'] = obj.get_category()
+            data_info['subcategory'] = obj.get_subcategory()
+            data_info['is_favorite'] = obj.is_favorite
+            data_info['type'] = obj.get_type()
+            data_info['sizes'] = obj.get_size()
+            data_info['price'] = obj.price            
             response_data = success_response(data=data_info)
         else:
-            response_data = error_response()
+            response_data = error_response(code=404)
 
         return Response(response_data, status=response_data["code"])
 
@@ -143,7 +158,7 @@ class SizeListView(generics.GenericAPIView):
         """
         for Retrieve product data
         """
-        objs =  models.Size.objects.filter(is_deleted=False).first()
+        objs =  models.Size.objects.filter(is_deleted=False, is_active=True)
 
         data_list = list()
         for obj in objs:
@@ -163,7 +178,7 @@ class CategoryListView(generics.GenericAPIView):
         """
         for Retrieve product data
         """
-        objs =  models.Categoty.objects.filter(is_deleted=False).first()
+        objs =  models.Category.objects.filter(is_deleted=False, is_active=True)
 
         data_list = list()
         for obj in objs:
@@ -171,6 +186,7 @@ class CategoryListView(generics.GenericAPIView):
             data_info['id'] = obj.pk
             data_info['title'] = obj.title
             data_list.append(data_info)  
+       
         response_data = success_response(data=data_list)
 
         return Response(response_data, status=response_data["code"])
@@ -183,7 +199,7 @@ class SubCategoryListView(generics.GenericAPIView):
         """
         for Retrieve product data
         """
-        objs =  models.SubCategory.objects.filter(is_deleted=False).first()
+        objs =  models.SubCategory.objects.filter(is_deleted=False, is_active=True)
 
         data_list = list()
         for obj in objs:
@@ -203,7 +219,7 @@ class ImportingListView(generics.GenericAPIView):
         """
         for Retrieve product data
         """
-        objs =  models.Importing.objects.filter(is_deleted=False).first()
+        objs =  models.Importing.objects.filter(is_deleted=False, is_active=True)
 
         data_list = list()
         for obj in objs:
@@ -223,7 +239,7 @@ class TypeListView(generics.GenericAPIView):
         """
         for Retrieve product data
         """
-        objs =  models.Type.objects.filter(is_deleted=False)
+        objs =  models.Type.objects.filter(is_deleted=False, is_active=True)
 
         data_list = list()
         for obj in objs:
@@ -234,4 +250,28 @@ class TypeListView(generics.GenericAPIView):
         response_data = success_response(data=data_list)
 
         return Response(response_data, status=response_data["code"])
+
+
+
+class BannerImagesListView(generics.GenericAPIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        """
+        for Retrieve Banner data
+        """
+        objs =  models.Product.objects.filter(is_deleted=False, is_active=True)
+
+        data_list = list()
+        for obj in objs:
+            data_info = dict()
+            data_info['id'] = obj.pk
+            data_info['title'] = obj.title
+            data_info['price'] = obj.price
+            data_info['image'] = obj.get_image_url()
+            data_list.append(data_info)  
+        response_data = success_response(data=data_list)
+
+        return Response(response_data, status=response_data["code"])
+
 

@@ -10,17 +10,15 @@ from company.models import Configuration
 
 class CompanyDetailView(generics.GenericAPIView):
     permission_classes = [AllowAny]
-
+        
     def get(self, request):
         
-        obj =  Configuration.objects.filter(is_deleted=False).first()
+        objs =  Configuration.objects.filter(is_deleted=False)
 
-        if obj:
-            data_info = dict()
-            response_data = success_response(data=data_info)
-        else:
-            response_data = error_response()
-
+        data_info = dict()
+        for obj in objs:
+            data_info[obj.code] = obj.value
+        response_data = success_response(data_info)
         return Response(response_data, status=response_data["code"])
 
 

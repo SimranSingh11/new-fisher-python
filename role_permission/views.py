@@ -253,7 +253,7 @@ class UpdatePermissionsData(generics.GenericAPIView):
             {'name': 'add', 'code': 'add',},
             {'name': 'edit', 'code': 'edit',},
             {'name': 'delete', 'code': 'delete',},
-            {'name': 'status change', 'code': 'status_change',},
+            {'name': 'change status', 'code': 'change_status',},
         ]
 
         for key in app_models.keys():

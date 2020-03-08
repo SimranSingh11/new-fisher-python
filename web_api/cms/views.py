@@ -8,24 +8,18 @@ from cms.models import Cms
 from faq.models import Faq
 
 
-# =================================================================================== #
-# CmsPageView
-# methods:
-# (1) get : to get cms page data
-# =================================================================================== #
-
 class CmsPageView(generics.GenericAPIView):
     permission_classes = [AllowAny]
 
     def get(self, request, key):
-        """
-        for Retrieve cmsn data
-        """
 
         cms_obj =  Cms.objects.filter(key=key, is_deleted=False).first()
 
         if cms_obj:
             data_info = dict()
+            data_info['title'] = cms_obj.title
+            data_info['key'] = cms_obj.key
+            data_info['content'] = cms_obj.content
             response_data = success_response(data=data_info)
         else:
             response_data = error_response()
@@ -38,16 +32,19 @@ class FaqListView(generics.GenericAPIView):
     permission_classes = [AllowAny]
 
     def get(self, request):
-        """
-        for Retrieve product data
-        """
-        obj =  Faq.objects.filter(is_deleted=False).first()
+        
+        faq_objs =  Faq.objects.filter(is_deleted=False, is_active=True)
 
-        if obj:
+        faq_list = list()
+
+        for obj in faq_objs:
             data_info = dict()
-            response_data = success_response(data=data_info)
-        else:
-            response_data = error_response()
+            data_info['title'] = obj.title
+            data_info['question'] = obj.question
+            data_info['answer'] = obj.answer
+            faq_list.append(data_info)
+        
+        response_data = success_response(data=faq_list)
 
         return Response(response_data, status=response_data["code"])
 

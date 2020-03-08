@@ -13,4 +13,6 @@ urlpatterns = [
     path('importing_list', views.ImportingListView.as_view(), name="importing_list"),
     path('type_list', views.TypeListView.as_view(), name="type_list"),
 
+    path('banner_image_list', views.BannerImagesListView.as_view(), name="banner_image_list"),
+
 ]

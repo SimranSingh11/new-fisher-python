@@ -10,6 +10,6 @@ router = DefaultRouter(trailing_slash=False)
 router.register('cms', views.CmsAPISet, base_name="cms")
 
 urlpatterns = [
-    path('get_cms_page/<str:key>', views.GetCmsPage.as_view(), name="get_cms_page"),
+    # path('get_cms_page/<str:key>', views.GetCmsPage.as_view(), name="get_cms_page"),
     
 ]+router.urls

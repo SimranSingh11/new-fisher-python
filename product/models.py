@@ -71,3 +71,30 @@ class Product(BaseModel):
     
     def get_image_url(self):
         return  "{}{}".format(BACKEND_HOST,self.image.url) if self.image else None 
+
+    def get_importing(self):
+        data_info = dict()
+        data_info['title'] = self.importing.title
+        return data_info
+    
+    def get_category(self):
+        data_info = dict()
+        data_info['title'] = self.category.title
+        return data_info
+
+
+    def get_subcategory(self):
+        data_info = dict()
+        data_info['title'] = self.subcategory.title
+        return data_info
+
+    def get_type(self):
+        data_info = dict()
+        data_info['title'] = self.type.title
+        return data_info
+
+    def get_size(self):
+        print("self.sizes: ", self.sizes)
+        data_info = dict()
+        data_info['size'] = [ {'id': ele.pk, 'title': ele.title}  for ele in self.sizes.filter(is_deleted=False, is_active=True)] 
+        return data_info
