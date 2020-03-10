@@ -250,28 +250,3 @@ class TypeListView(generics.GenericAPIView):
         response_data = success_response(data=data_list)
 
         return Response(response_data, status=response_data["code"])
-
-
-
-class BannerImagesListView(generics.GenericAPIView):
-    permission_classes = [AllowAny]
-
-    def get(self, request):
-        """
-        for Retrieve Banner data
-        """
-        objs =  models.Product.objects.filter(is_deleted=False, is_active=True)
-
-        data_list = list()
-        for obj in objs:
-            data_info = dict()
-            data_info['id'] = obj.pk
-            data_info['title'] = obj.title
-            data_info['price'] = obj.price
-            data_info['image'] = obj.get_image_url()
-            data_list.append(data_info)  
-        response_data = success_response(data=data_list)
-
-        return Response(response_data, status=response_data["code"])
-
-

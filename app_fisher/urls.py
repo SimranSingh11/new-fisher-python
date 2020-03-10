@@ -37,6 +37,8 @@ urlpatterns = [
     path('api/', include('company.urls')),  # company module urls
     path('api/', include('faq.urls')),  # faq module urls
     path('api/', include('cms.urls')),  # cms module urls
+    path('api/', include('site_image.urls')),  # site_image module urls
+
     path('api/web/', include('web_api.urls')),  # web_api module urls
 
 

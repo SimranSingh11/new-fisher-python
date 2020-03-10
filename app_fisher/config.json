@@ -42,7 +42,8 @@
         "order",
         "company",
         "cms",
-        "faq"
+        "faq",
+        "site_image"
     ],
     
     "EMAIL": {

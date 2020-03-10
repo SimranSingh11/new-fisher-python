@@ -244,7 +244,8 @@ class UpdatePermissionsData(generics.GenericAPIView):
                 'order': ['order'],
                 'company': ['configuration'],
                 'faq' : ['faq'],
-                'cms':['cms']
+                'cms':['cms'],
+                'site_image': ['site_image']
             }
         
         action_list = [
